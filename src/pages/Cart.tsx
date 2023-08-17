@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { remove, add } from "../store/cartSlice";
 import { useSelector, useDispatch } from "react-redux";
 import { dataType } from "../store/cartSlice";
+import {toast} from 'react-hot-toast';
 
 interface RootState {
   cart: dataType[];
@@ -36,9 +37,13 @@ const Cart = () => {
   //removing from cart...
   const addRemover = (index: number) => {
     dispatch(remove(index));
+    toast('Removed!', {
+        icon: '❌',
+      });
   };
   const addHandler = (i: dataType) => {
-    dispatch(add(i));
+    dispatch(add(i))
+    toast.success("Item Added");
   };
   return (
     <div>

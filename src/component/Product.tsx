@@ -2,7 +2,10 @@ import React, { useEffect, useState } from 'react'
 import {useDispatch} from 'react-redux';
 import {add} from '../store/cartSlice';
 import { dataType } from '../store/cartSlice';
-import './component.css';
+import {toast} from 'react-hot-toast';
+// import './component.css';
+import Button from '@mui/material/Button';
+
 const Product = () => {
     //dispatcher
     const dispatch=useDispatch();
@@ -26,6 +29,7 @@ const Product = () => {
     //addHandler
     const addHandler=(i:dataType)=>{
         dispatch(add(i));
+        toast.success("Item Added")
 
     }
     //coditon for Loading...
@@ -41,9 +45,10 @@ const Product = () => {
                         <div key={index} className='Product'>
                             <img src={i.images[0]} alt='#' />
                             <code>{i.title}</code>
-                            <button  onClick={()=>{
+    
+                            <Button variant="contained" color="secondary" onClick={()=>{
                                 addHandler(i);
-                            }}>Add me</button>
+                            }}>Add me</Button>
                         </div>
                     )
             })  
@@ -52,4 +57,4 @@ const Product = () => {
   )
 }
 
-export default Product
+export default Product ;

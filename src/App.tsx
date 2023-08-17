@@ -6,10 +6,18 @@ import Cart from './pages/Cart';
 import NavBar from './component/NavBar';
 import store from './store/store';
 import { Provider } from 'react-redux';
+import {Toaster} from 'react-hot-toast';
 const App = () => {
   return (
     <div className='App'>
+
       <Provider store={store}>
+      <div>
+                <Toaster
+                    position="top-right"
+                    reverseOrder={false}
+                ></Toaster>
+        </div>
         <BrowserRouter>
           <h2>Shopping Cart</h2>
           <NavBar />
