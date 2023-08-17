@@ -9,28 +9,21 @@ interface RootState {
 }
 
 const Cart = () => {
-  // dispatcher...
-  const dispatch = useDispatch();
-  // useState...
-  const [productData, setProductData] = useState<dataType[]>([]);
-  //useSelector...
-  const data = useSelector((state: RootState) => state.cart);
-  //useEffect
-  useEffect(() => {
-    setProductData(data);
-  }, [data]);
-  //calculating total Price of Product...
-  let totalPrice: number = 0;
-  for (let i = 0; i < productData.length; i++) {
-    totalPrice += productData[i].price;
-  }
-  //Creating a map from productData...
-  const myMap = new Map<dataType, number>();
-  for (let i of productData) {
-    if (myMap.has(i)) {
-      myMap.set(i, myMap.get(i)! + 1);
-    } else {
-      myMap.set(i, 1);
+    // dispatcher...
+    const dispatch=useDispatch();
+    // useState...
+    const [productData,setProductData]=useState<dataType[]>([]);
+    //useSelector...
+    const data=useSelector((state:RootState)=>state.cart);
+    //useEffect
+    useEffect(()=>{
+        setProductData(data);
+    },[data]);
+    //calculating total Price of Product...
+    let totalPrice:number=0;
+    for(let i=0;i<productData.length;i++)
+    {
+        totalPrice+=productData[i].price;
     }
   }
 
