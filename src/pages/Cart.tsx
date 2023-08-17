@@ -25,19 +25,31 @@ const Cart = () => {
     {
         totalPrice+=productData[i].price;
     }
-  }
-
-  //removing from cart...
-  const addRemover = (index: number) => {
-    dispatch(remove(index));
-    toast('Removed!', {
-        icon: '❌',
-      });
-  };
-  const addHandler = (i: dataType) => {
-    dispatch(add(i))
-    toast.success("Item Added");
-  };
+    //Adding myMap functionality...
+    const myMap=new Map<dataType,number>();
+    for(let i of productData)
+    {
+        if(myMap.has(i))
+        {
+            myMap.set(i,myMap.get(i)!+1);
+        }
+        else
+        {
+            myMap.set(i,1);
+        }
+    }
+    //removing from cart...
+    const addRemover = (index: number) => {
+      dispatch(remove(index));
+      toast('Removed!', {
+          icon: '❌',
+        });
+    };
+    const addHandler = (i: dataType) => {
+      dispatch(add(i))
+      toast.success("Item Added");
+    };
+  
   return (
     <div>
       <h1>Cart...</h1>
@@ -72,6 +84,6 @@ const Cart = () => {
       )}
     </div>
   );
-};
+    };
 
 export default Cart;
