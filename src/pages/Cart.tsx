@@ -17,6 +17,7 @@ const Cart = () => {
     //useEffect
     useEffect(()=>{
         setProductData(data);
+        console.log(data);
     },[data]);
     //calculating total Price of Product...
     let totalPrice:number=0;
