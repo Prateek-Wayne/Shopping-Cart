@@ -1,10 +1,10 @@
-import React, { useState ,useEffect} from 'react'
-import {remove} from '../store/cartSlice';
-import { useSelector ,useDispatch} from 'react-redux';
-import { dataType } from '../store/cartSlice';
+import React, { useState, useEffect } from "react";
+import { remove, add } from "../store/cartSlice";
+import { useSelector, useDispatch } from "react-redux";
+import { dataType } from "../store/cartSlice";
 
-interface RootState{
-    cart:dataType[]
+interface RootState {
+  cart: dataType[];
 }
 
 const Cart = () => {
@@ -17,7 +17,6 @@ const Cart = () => {
     //useEffect
     useEffect(()=>{
         setProductData(data);
-        console.log(data);
     },[data]);
     //calculating total Price of Product...
     let totalPrice:number=0;
@@ -25,29 +24,49 @@ const Cart = () => {
     {
         totalPrice+=productData[i].price;
     }
-    //removing from cart...
-    const addRemover=(index:number)=>{
-        dispatch(remove(index));
-    }
+  }
+
+  //removing from cart...
+  const addRemover = (index: number) => {
+    dispatch(remove(index));
+  };
+  const addHandler = (i: dataType) => {
+    dispatch(add(i));
+  };
   return (
     <div>
-        <h1>Cart...</h1>
-        <h2>Total:{totalPrice}</h2>
-        {
-             productData.map((i:dataType,index:number)=>{
-                return(
-                    <div key={index}>
-                        <span>{i.title}</span>
-                        <button  onClick={()=>{
-                            addRemover(i.id);
-                        }}>Delete  me</button>
-                    </div>
-                )
-        }) 
+      <h1>Cart...</h1>
+      <h2>Total:{totalPrice}</h2>
+      {Array.from(myMap).map(
+        ([key, value]: [dataType, number], index: number) => {
+          return (
+            <div key={index}>
+              <span>{key.title}</span>
+              <p>
+                <code>{value}</code>
+              </p>
+              <span>
+                <button
+                  onClick={() => {
+                    addHandler(key);
+                  }}
+                >
+                  Add me
+                </button>
+                <button
+                  onClick={() => {
+                    addRemover(key.id);
+                  }}
+                >
+                  Delete me
+                </button>
+              </span>
+            </div>
+          );
         }
-      
+      )}
     </div>
-  )
-}
+  );
+};
 
-export default Cart
+export default Cart;
