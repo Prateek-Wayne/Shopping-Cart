@@ -9,11 +9,13 @@ const Product = () => {
     
     //useState
     const [dataProduct,setProductData]=useState<dataType[]>([]);
+    const [loading,setLoading] =useState<boolean>(true);
     //fetching...
     const fetchData =async ()=>{
         const res=await fetch('https://dummyjson.com/products');
         const data= await res.json();
         setProductData(data.products);
+        setLoading(false);
         console.log(data.products);
     }
 
@@ -26,7 +28,11 @@ const Product = () => {
         dispatch(add(i));
 
     }
-
+    //coditon for Loading...
+    if(loading){
+        return (<h1>Loading....</h1>)
+        ;
+    }
   return (
     <div className='ProductWrapper'>
         {   
