@@ -7,6 +7,7 @@ export interface dataType{
     discountPercentage:string,
     images:string[],
     price:number;
+    rating:number;
 }
 const initialState:dataType[]=[];
 const cartSlice=createSlice({

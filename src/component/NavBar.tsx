@@ -1,25 +1,49 @@
-import React from 'react';
+import React ,{useState} from 'react';
 import { Link } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-// import '../App.css'
-import  {dataType}  from '../store/cartSlice';
- 
+import { dataType } from '../store/cartSlice';
+import { Switch,Badge,AppBar, Toolbar, Typography, Button, Box } from '@mui/material';
 interface RootState {
-    cart: dataType[];
-  }
-  
-const NavBar = () => {
+  cart: dataType[];
+}
+interface NavBarProp{
+  darkMode:boolean;
+  setDarkMode:React.Dispatch<React.SetStateAction<boolean>>;
 
-    const counter = useSelector((state: RootState) => state.cart);
+}
+const NavBar:React.FC<NavBarProp>= ({darkMode,setDarkMode}) => {
+  
+ 
+  const counter = useSelector((state: RootState) => state.cart);
 
   return (
-    <div className='NavbarWrapper'>
-    <div className='Navbar' >
-      <Link to='/' ><a href='/'>🏠</a></Link>
-      <Link to='/cart' ><a href='/cart'>🛍️</a></Link>
-      <code className='Code'>{counter.length}</code>
-    </div>
-    </div>
+    <Box sx={{ flexGrow: 1 }}>
+      <AppBar position="fixed">
+        <Toolbar>
+
+          <Box component={Link} to="/" sx={{ textDecoration: 'none', color: 'inherit', flexGrow: 1 }}>
+            <Typography variant="h6" component="div">
+              Home
+            </Typography>
+          </Box>
+
+          <Button size='large' color="secondary" variant='contained' sx={{ margin: 2 }} > <Link to='/cart'>Cart</Link> </Button>
+
+          <Badge badgeContent={counter.length} color="secondary" >
+            🛒
+          </Badge>
+
+          <Switch color='secondary' onClick={() => {
+            setDarkMode(!darkMode);
+            console.log("Navbar ", darkMode)
+          }} />
+
+        </Toolbar>
+
+      </AppBar>
+
+    </Box>
+
   )
 }
 
