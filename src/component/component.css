@@ -1,0 +1,36 @@
+.ProductWrapper{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    color: white;
+}
+.Product{
+    border: 2px solid black;
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    margin: 10px;
+}
+.Product img{
+    width: 200px;
+    height: 200px;
+    margin: 5px;
+}
+.Product code {
+    white-space: nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+    max-width: 200px; /* Adjust as needed */
+  }
+  button{
+    color:rgb(252, 248, 248);
+    background-color: #225066;
+    border:3px solid #153b50;
+    border-radius: 10px;
+  }
+  button :hover{
+    background-color: #b3c8d2;
+    transition: all 1s ease-in-out;
+  }
+
+  
